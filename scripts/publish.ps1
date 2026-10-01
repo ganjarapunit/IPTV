@@ -78,6 +78,14 @@ Copy-Item -LiteralPath $playlist -Destination $dated -Force
 Copy-Item -LiteralPath $playlist -Destination "$snaps\latest.m3u8" -Force
 Copy-Item -LiteralPath $playlist -Destination "$repoRoot\playlist.txt" -Force
 
+# Normalise for strict parsers: collapse multi-value group-titles ("A;B;C"),
+# and fill any missing tvg-id / tvg-name / group-title. Smart IPTV silently
+# drops entries with ambiguous or absent attributes.
+& "$PSScriptRoot\normalise.ps1" -InFile "$snaps\latest.m3u" -OutFile "$snaps\_norm.tmp.m3u" | Out-Null
+Move-Item -LiteralPath "$snaps\_norm.tmp.m3u" -Destination "$snaps\latest.m3u" -Force
+Copy-Item -LiteralPath "$snaps\latest.m3u" -Destination "$snaps\latest.m3u8" -Force
+Copy-Item -LiteralPath "$snaps\latest.m3u" -Destination "$repoRoot\playlist.txt" -Force
+
 # keep the dated history bounded
 Get-ChildItem -LiteralPath $snaps -Filter '*.m3u' -ErrorAction SilentlyContinue |
   Where-Object { $_.Name -ne 'latest.m3u' } |
