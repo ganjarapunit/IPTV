@@ -14,10 +14,14 @@
 [CmdletBinding()]
 param(
   [Parameter(Mandatory = $true)][string]$InFile,
-  [string]$OutFile = ""
+  [string]$OutFile = "",
+  [switch]$Flatten
 )
 
 $ErrorActionPreference = 'Stop'
+
+# Available to the per-entry loop below (script scope, read inside the loop).
+$Script:Flatten = [bool]$Flatten
 
 if (-not $OutFile) {
   $OutFile = [System.IO.Path]::ChangeExtension($InFile, 'normalised.m3u')
@@ -58,9 +62,18 @@ foreach ($r in $rows) {
 
   # 2. fill gaps that make strict parsers drop the entry
   if (-not $id) { $id = "ch$seq"; $fixed++ }
-  if (-not $grp) { $grp = 'General'; $fixed++ }
   if (-not $nm) { $nm = $name; $fixed++ }
   if (-not $logo) { $logo = "https://assets.iptv-org.github.io/assets/logo/$id.png" }
+
+  # 3. flatten groups. Some Tizen players (Smart IPTV on certain firmware)
+  #    expose no group switcher, so any group-title value traps channels in a
+  #    category the user cannot leave. A single flat list is always navigable.
+  if ($Script:Flatten) {
+    if ($grp -ne 'All') { $grp = 'All'; $fixed++ }
+  } elseif (-not $grp) {
+    $grp = 'General'
+    $fixed++
+  }
 
   $new = "#EXTINF:-1 tvg-id=""$id"" tvg-name=""$nm"" tvg-logo=""$logo"" group-title=""$grp"",$name"
   [void]$out.Add($new)
