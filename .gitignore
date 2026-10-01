@@ -6,6 +6,9 @@ db/
 iptv.txt
 *.log
 
+# local working copy; playlists/latest.m3u is the tracked source
+india-free-vietnam.m3u
+
 # OS noise
 Thumbs.db
 desktop.ini
