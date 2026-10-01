@@ -1,0 +1,12 @@
+# Build artefacts and local-only state
+cache/
+logs/
+backups/
+db/
+iptv.txt
+*.log
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
