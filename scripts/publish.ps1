@@ -8,6 +8,7 @@
   Run:  pwsh -File publish.ps1              # refresh (if stale) + push
         pwsh -File publish.ps1 -NoRefresh   # push current playlist as-is
         pwsh -File publish.ps1 -NoPush      # refresh and commit locally only
+        pwsh -File publish.ps1 -Unattended  # scheduled-task mode
 #>
 [CmdletBinding()]
 param(
@@ -15,7 +16,10 @@ param(
   [switch]$NoPush,
   [int]$RefreshMinAgeMinutes = 120,
   [string]$Remote = "origin",
-  [string]$Branch = "main"
+  [string]$Branch = "main",
+  # Scheduled-task mode: never block on a credential or host-key prompt, which
+  # would hang the task until the execution limit kills it.
+  [switch]$Unattended
 )
 
 $ErrorActionPreference = 'Stop'
@@ -29,10 +33,31 @@ $stamp = Get-Date -Format 'yyyy-MM-dd HH:mm'
 
 Set-Location $repoRoot
 
+if ($Unattended) {
+  # Fail fast instead of hanging on an interactive prompt. GIT_TERMINAL_PROMPT=0
+  # turns a missing credential into an immediate error rather than a task that
+  # sits there for six hours waiting for input that will never come.
+  $env:GIT_TERMINAL_PROMPT = '0'
+  $env:GCM_INTERACTIVE = 'never'
+  $env:GIT_SSH_COMMAND = 'ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new'
+}
+
 # ---------------------------------------------------------------- git sanity
 if (-not (Test-Path -LiteralPath "$repoRoot\.git")) {
   Write-Log "initialising git repository" 'WARN'
   git init -b $Branch | Out-Null
+}
+
+if ($Unattended) {
+  # Confirm we can actually reach the remote before spending 30+ minutes
+  # verifying streams we might then be unable to publish.
+  Write-Host "preflight: checking remote access..." -ForegroundColor Cyan
+  git ls-remote $Remote $Branch 2>&1 | Out-Null
+  if ($LASTEXITCODE -ne 0) {
+    Write-Log "cannot reach $Remote (git ls-remote failed). Aborting before refresh." 'ERROR'
+    exit 1
+  }
+  Write-Host "preflight: remote reachable" -ForegroundColor Green
 }
 
 Write-Host "=== IPTV playlist publish ===" -ForegroundColor Cyan
