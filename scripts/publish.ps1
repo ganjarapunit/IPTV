@@ -72,6 +72,12 @@ Copy-Item -LiteralPath $playlist -Destination "$snaps\latest.m3u" -Force
 $dated = "playlists\{0}.m3u" -f (Get-Date -Format 'yyyy-MM-dd')
 Copy-Item -LiteralPath $playlist -Destination $dated -Force
 
+# Some Tizen players (IPTV Smarters in particular) reject or mishandle certain
+# extensions and cache aggressively. Identical content under three names so the
+# player has something that works, plus a .txt for hosts that reject .m3u paths.
+Copy-Item -LiteralPath $playlist -Destination "$snaps\latest.m3u8" -Force
+Copy-Item -LiteralPath $playlist -Destination "$repoRoot\playlist.txt" -Force
+
 # keep the dated history bounded
 Get-ChildItem -LiteralPath $snaps -Filter '*.m3u' -ErrorAction SilentlyContinue |
   Where-Object { $_.Name -ne 'latest.m3u' } |
