@@ -1911,6 +1911,8 @@ https://amg02278-amg02278c2-flosports-worldwide-9916.playouts.now.amagi.tv/playl
 https://amg02278-amg02278c1-flosports-worldwide-7592.playouts.now.amagi.tv/playlist.m3u8
 #EXTINF:-1 tvg-id="FoxSportsNews.au@1080p" tvg-name="Fox Sports News" tvg-logo="https://assets.iptv-org.github.io/assets/logo/FoxSportsNews.au.png" group-title="English Sports",Fox Sports News (1080p)
 https://skynewsau-live-premium.akamaized.net/hls/live/2105307/foxsportsnews/live_1080p.m3u8
+#EXTINF:-1 tvg-id="FoxSportsNews.au@1080p" tvg-name="Fox Sports News" tvg-logo="https://assets.iptv-org.github.io/assets/logo/FoxSportsNews.au.png" group-title="Cricket",Fox Sports News (1080p)
+https://skynewsau-live-premium.akamaized.net/hls/live/2105307/foxsportsnews/live_1080p.m3u8
 #EXTINF:-1 tvg-id="FUELTV.pt@1080p" tvg-name="FUEL TV" tvg-logo="https://assets.iptv-org.github.io/assets/logo/FUELTV.pt.png" group-title="English Sports",FUEL TV (1080p)
 https://amg01074-fueltv-fueltvnz-samsungnz-i8ani.amagi.tv/playlist/amg01074-fueltv-fueltvnz-samsungnz/playlist.m3u8
 #EXTINF:-1 tvg-id="FUELTV.pt@1080p" tvg-name="FUEL TV" tvg-logo="https://assets.iptv-org.github.io/assets/logo/FUELTV.pt.png" group-title="English Sports",FUEL TV (1080p)
