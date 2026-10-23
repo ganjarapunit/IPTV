@@ -19,10 +19,10 @@ https://newscapital.com/hls/stream.m3u8?token=Nc360PermanentSecureKey987
 https://segment.yuppcdn.net/240122/siripoli/playlist.m3u8
 #EXTINF:-1 tvg-id="FoodFood.in@SD" tvg-name="Food Food (576p)" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Food_Food.png" group-title="Cooking",Food Food (576p)
 https://mumt03.tangotv.in/Dsly5z3HFOODFOOD/index.m3u8
-#EXTINF:-1 tvg-id="CricketGold.au@1080p" tvg-name="Cricket Gold" tvg-logo="https://assets.iptv-org.github.io/assets/logo/CricketGold.au.png" group-title="Cricket",Cricket Gold (1080p)
-https://streams2.sofast.tv/ptnr-yupptv/title-cricketgold/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/b2048bb8-1686-4432-aa50-647245383e0c/manifest.m3u8
 #EXTINF:-1 tvg-id="DDSports.in@1080p" tvg-name="DD Sports" tvg-logo="https://assets.iptv-org.github.io/assets/logo/DDSports.in.png" group-title="Cricket",DD Sports (1080p)
 https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/b17adfe543354fdd8d189b110617cddd/index.m3u8
+#EXTINF:-1 tvg-id="CricketGold.au@1080p" tvg-name="Cricket Gold" tvg-logo="https://assets.iptv-org.github.io/assets/logo/CricketGold.au.png" group-title="Cricket",Cricket Gold (1080p)
+https://streams2.sofast.tv/scheduler/scheduleMaster/418.m3u8
 #EXTINF:-1 tvg-id="SkyRacing1.au@720p" tvg-name="Sky Racing 1" tvg-logo="https://assets.iptv-org.github.io/assets/logo/SkyRacing1.au.png" group-title="Cricket",Sky Racing 1 (720p)
 https://636ffd31f0e12.streamlock.net/RacingStream1/RacingStream1/playlist.m3u8
 #EXTINF:-1 tvg-id="SkyRacing2.au@720p" tvg-name="Sky Racing 2" tvg-logo="https://assets.iptv-org.github.io/assets/logo/SkyRacing2.au.png" group-title="Cricket",Sky Racing 2 (720p)
