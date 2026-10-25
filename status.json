@@ -1,7 +1,21 @@
 {
-  "generated": "2026-10-23 23:51",
-  "channels": 1889,
+  "generated": "2026-10-25 16:49",
+  "channels": 1947,
   "refreshed_from": "Vietnam (authoritative)",
   "raw_url": "https://raw.githubusercontent.com/ganjarapunit/IPTV/main/playlists/latest.m3u",
-  "note": "Only publisher-owned free-to-air streams. No subscription or pirated feeds."
+  "note": "Only publisher-owned free-to-air streams. No subscription or pirated feeds.",
+  "last_verification": "2026-10-25T17:06:13.2694674+07:00",
+  "tested": 2862,
+  "dropped_last_run": 36,
+  "added_last_run": 94,
+  "status_breakdown": {
+    "segments-unreachable": 53,
+    "not-playlist": 15,
+    "timeout": 59,
+    "dead": 85,
+    "ok": 1997,
+    "geo-blocked": 407,
+    "fail": 166,
+    "segments-blocked": 80
+  }
 }
